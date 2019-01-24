@@ -11,6 +11,10 @@ public class Book {
         this.yearOfPublishing = yearOfPublishing;
     }
 
+    public String toString() {
+        return String.format("%-40s", title) + String.format("%-25s", author) + String.format("%-30d", yearOfPublishing);
+    }
+
     public String getTitle() {
         return title;
     }
