@@ -23,16 +23,17 @@ public abstract class Menu {
         System.out.println(result);
     }
 
-    public void selectOption(Integer optionKey) {
-        MenuOption option = options.get(optionKey);
-        option.getAction().display();
+    public Menu followingMenu(Integer input) {
+        if (options.containsKey(input)) {
+            return options.get(input).getAction();
+        } else {
+            System.out.println("Please select a valid option!");
+            return this;
+        }
     }
 
     public Map<Integer, MenuOption> getOptions() {
         return options;
     }
 
-    public String getStartLine() {
-        return startLine;
-    }
 }

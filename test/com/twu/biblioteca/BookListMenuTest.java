@@ -22,4 +22,9 @@ public class BookListMenuTest {
         bookListMenu.addBookList(bookList);
         assertEquals("In Search of Lost Time                  Marcel Proust            1913                          ", bookListMenu.getOptions().get(1).getName());
     }
+
+    @Test
+    public void sameMenuIsReturnedWhenInputingInvalidOption() {
+        assertEquals(bookListMenu, bookListMenu.followingMenu(9876));
+    }
 }

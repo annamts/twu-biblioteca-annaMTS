@@ -32,14 +32,14 @@ public class MainMenuTest {
     @Test
     public void mainMenuIsDisplayed() {
         mainMenu.display();
-        assertEquals("Please select one of the following options by inputting the number at the beginning of the line:\n" +
+        assertEquals("Select one of the following options by inputting the number at the beginning of the line:\n" +
                 "\n" +
                 "\t1     List of books\n", outContent.toString());
     }
 
     @Test
-    public void selectingOptionOnePrintsListOfBooks() {
-        mainMenu.selectOption(1);
-        assertEquals("These are our available books:\n\n\n" , outContent.toString());
+    public void choosingInvalidOptionPrintsErrorMessage() {
+        mainMenu.followingMenu(425);
+        assertEquals("Please select a valid option!\n", outContent.toString());
     }
 }
