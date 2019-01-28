@@ -16,14 +16,10 @@ public class UI {
         System.out.println(GREETING);
     }
 
-    public void interactWithMenu(Menu menu) {
-        Integer input;
-        while (menu != null) {
-            menu.display();
-            input = Integer.parseInt(scanner.nextLine());
-            menu = menu.followingMenu(input);
+    public void displayBooks() {
+        for (Book book : BookManager.getBookList()) {
+            System.out.println(book.toFormattedString());
         }
-        System.out.println("Bye!");
     }
 
 }

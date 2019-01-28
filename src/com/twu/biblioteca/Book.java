@@ -2,7 +2,7 @@ package com.twu.biblioteca;
 
 public class Book {
     private String title;
-    private  String author;
+    private String author;
     private Integer yearOfPublishing;
 
     public Book(String title, String author, Integer yearOfPublishing) {
@@ -12,6 +12,10 @@ public class Book {
     }
 
     public String toString() {
+        return "\tTitle: " + title + "\n\tAuthor: " + author + "\n\tYear of publishing: " + yearOfPublishing + "\n";
+    }
+
+    public String toFormattedString() {
         return String.format("%-40s", title) + String.format("%-25s", author) + String.format("%-30d", yearOfPublishing);
     }
 

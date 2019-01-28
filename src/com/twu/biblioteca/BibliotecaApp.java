@@ -9,7 +9,6 @@ public class BibliotecaApp {
         BookManager.addBookList("resources/books.txt");
         UI ui = new UI();
         ui.firstGreeting();
-        MainMenu menu = new MainMenu();
-        ui.interactWithMenu(menu);
+        ui.displayBooks();
     }
 }
