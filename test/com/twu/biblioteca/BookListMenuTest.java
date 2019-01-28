@@ -12,6 +12,7 @@ public class BookListMenuTest {
 
     @Before
     public void setUpBookListMenu() {
+        BookManager.addBookList("test_resources/books.txt");
         bookListMenu = new BookListMenu();
     }
 

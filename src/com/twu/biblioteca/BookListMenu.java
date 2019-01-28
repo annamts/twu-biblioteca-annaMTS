@@ -11,7 +11,7 @@ public class BookListMenu extends Menu{
     }
 
     public void addBookList() {
-        List<Book> bookList = BookParser.createListOfBooks("resources/books.txt");
+        List<Book> bookList = BookManager.getBookList();
         Integer counter = 1;
         for(Book book: bookList) {
             this.getOptions().add(new MenuOption(counter, book.toString(), null));
