@@ -1,30 +1,29 @@
 package com.twu.biblioteca;
 
 import javax.swing.text.html.Option;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.Map;
+import java.util.*;
 
 public abstract class Menu {
-    private Map<Integer, MenuOption> options;
+    private List<MenuOption> options;
     private String startLine;
 
     public Menu(String startLine) {
-        options = new LinkedHashMap<>();
+        options = new ArrayList<>();
         this.startLine = startLine;
+        this.options.add(new MenuOption(0,"Quit application", null));
     }
 
     public void display() {
-        String result = startLine;
-        for(Integer key : options.keySet()) {
-            String option = options.get(key).getName();
-            result += "\n\t" + String.format("%-5d", key) + " " + option;
+        System.out.println(startLine);
+        for(Integer i = 1; i < options.size(); i++) {
+            options.get(i).display();
         }
-        System.out.println(result);
+        System.out.println();
+        options.get(0).display();
     }
 
     public Menu followingMenu(Integer input) {
-        if (options.containsKey(input)) {
+        if (input <= options.size()) {
             return options.get(input).getAction();
         } else {
             System.out.println("Please select a valid option!");
@@ -32,7 +31,7 @@ public abstract class Menu {
         }
     }
 
-    public Map<Integer, MenuOption> getOptions() {
+    public List<MenuOption> getOptions() {
         return options;
     }
 

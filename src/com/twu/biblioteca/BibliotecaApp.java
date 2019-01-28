@@ -8,7 +8,7 @@ public class BibliotecaApp {
     public static void main(String[] args) {
         UI ui = new UI();
         ui.firstGreeting();
-        Menu menu = ui.createMainMenu();
+        MainMenu menu = new MainMenu();
         ui.interactWithMenu(menu);
     }
 }

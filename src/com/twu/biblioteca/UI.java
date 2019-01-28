@@ -14,15 +14,6 @@ public class UI {
 
     public void firstGreeting() {
         System.out.println(GREETING);
-        createMainMenu();
-    }
-
-    public Menu createMainMenu() {
-        List<Book> bookList = BookParser.createListOfBooks("resources/books.txt");
-        MainMenu mainMenu = new MainMenu();
-        BookListMenu bookListMenu = (BookListMenu)mainMenu.getOptions().get(1).getAction();
-        bookListMenu.addBookList(bookList);
-        return mainMenu;
     }
 
     public void interactWithMenu(Menu menu) {
@@ -32,6 +23,7 @@ public class UI {
             input = Integer.parseInt(scanner.nextLine());
             menu = menu.followingMenu(input);
         }
+        System.out.println("Bye!");
     }
 
 }

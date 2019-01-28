@@ -32,9 +32,12 @@ public class MainMenuTest {
     @Test
     public void mainMenuIsDisplayed() {
         mainMenu.display();
-        assertEquals("Select one of the following options by inputting the number at the beginning of the line:\n" +
+        String output = "Select one of the following options by inputting the number at the beginning of the line:\n" +
                 "\n" +
-                "\t1     List of books\n", outContent.toString());
+                "\t1     List of books\n" +
+                "\n" +
+                "\t0     Quit application\n";
+        assertEquals(output, outContent.toString());
     }
 
     @Test
