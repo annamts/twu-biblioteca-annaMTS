@@ -8,7 +8,6 @@ public class BibliotecaApp {
     public static void main(String[] args) {
         BookManager.addBookList("resources/books.txt");
         UI ui = new UI();
-        ui.firstGreeting();
-        ui.displayBooks();
+        ui.startUI();
     }
 }
