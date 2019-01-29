@@ -10,6 +10,7 @@ public class Menu {
         options = new HashMap<>();
         options.put("m", mainMenu());
         options.put("l", listOfBooks());
+        options.put("q", null);
     }
 
     public String next(String input) {
@@ -26,5 +27,9 @@ public class Menu {
 
     public String mainMenu() {
         return "Select from the following options by inputting the letter on the left:\n\n\tl\tList of books";
+    }
+
+    public String quitOption() {
+        return "\tq\tQuit application";
     }
 }

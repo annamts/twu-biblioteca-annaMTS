@@ -19,4 +19,9 @@ public class MenuTest {
     public void errorMessageIsIssuedWhenInvalidOptionIsChosen() {
         assertEquals("Please select a valid option!", menu.next("bdhjag"));
     }
+
+    @Test
+    public void nullIsReturnedWhenUserInputIsQForQuit() {
+        assertEquals(null, menu.next("q"));
+    }
 }
