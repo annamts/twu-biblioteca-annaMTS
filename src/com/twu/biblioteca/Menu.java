@@ -13,7 +13,7 @@ public class Menu {
     }
 
     public String next(String input) {
-        return options.get(input);
+        return options.containsKey(input)? options.get(input) : "Please select a valid option!";
     }
 
     public String listOfBooks() {

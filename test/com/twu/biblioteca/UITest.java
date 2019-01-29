@@ -6,7 +6,6 @@ import org.junit.Test;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
-import java.util.List;
 
 import static org.junit.Assert.*;
 
@@ -18,6 +17,7 @@ public class UITest {
 
     @Before
     public void setUpUI() {
+        BookManager.addBookList("test_resources/books.txt");
         ui = new UI();
     }
 
@@ -43,6 +43,7 @@ public class UITest {
         String expected = "In Search of Lost Time                  Marcel Proust            1913                          \n" +
                 "Don Quixote                             Miguel de Cervantes      1605                          \n" +
                 "Ulysses                                 James Joyce              1922                          \n" +
+                "The Great Gatsby                        F. Scott Fitzgerald      1925                          \n" +
                 "Moby Dick                               Herman Melville          1851                          \n" +
                 "Hamlet                                  William Shakespeare      1602                          \n" +
                 "War and Peace                           Leo Tolstoy              1869                          \n" +
