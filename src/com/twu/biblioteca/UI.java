@@ -42,6 +42,7 @@ public class UI {
     }
 
     public void displayOtherMenuOptions() {
+        System.out.println(menu.mainMenuOption());
         System.out.println(menu.quitOption());
     }
 

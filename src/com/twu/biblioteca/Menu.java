@@ -18,10 +18,11 @@ public class Menu {
     }
 
     public String listOfBooks() {
-        String result = "";
+        String result = "These are our available books:\n\n";
         for (Book book : BookManager.getBookList()) {
             result += book.toFormattedString() + "\n";
         }
+        result += "\nCheck out book by inputting its title\n";
         return result;
     }
 
@@ -31,5 +32,13 @@ public class Menu {
 
     public String quitOption() {
         return "\tq\tQuit application";
+    }
+
+    public String mainMenuOption() {
+        return "\tm\tMain menu";
+    }
+
+    public String checkOutBook(String bookTitle) {
+        return BookManager.checkOut(bookTitle)? "The book '" + bookTitle + "' has been checked out" : "'" + bookTitle + "' was not found";
     }
 }

@@ -1,5 +1,6 @@
 package com.twu.biblioteca;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class BookManager {
@@ -13,7 +14,13 @@ public class BookManager {
         return bookList;
     }
 
-    public static void checkOut(Book book) {
-        bookList.remove(book);
+    public static Boolean checkOut(String bookTitle) {
+        for(Book book : bookList) {
+            if (bookTitle.equals(book.getTitle())) {
+                bookList.remove(book);
+                return true;
+            }
+        }
+        return false;
     }
 }

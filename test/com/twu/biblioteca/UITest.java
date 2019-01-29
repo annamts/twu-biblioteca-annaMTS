@@ -40,7 +40,9 @@ public class UITest {
     @Test
     public void listOfBooksIsPrinted() {
         ui.displayNextMenu("l");
-        String expected = "In Search of Lost Time                  Marcel Proust            1913                          \n" +
+        String expected = "These are our available books:\n" +
+                "\n" +
+                "In Search of Lost Time                  Marcel Proust            1913                          \n" +
                 "Don Quixote                             Miguel de Cervantes      1605                          \n" +
                 "Ulysses                                 James Joyce              1922                          \n" +
                 "The Great Gatsby                        F. Scott Fitzgerald      1925                          \n" +
@@ -54,7 +56,9 @@ public class UITest {
                 "The Adventures of Huckleberry Finn      Mark Twain               1884                          \n" +
                 "Lolita                                  Vladimir Nabokov         1955                          \n" +
                 "Alice's Adventures in Wonderland        Lewis Carroll            1865                          \n" +
-                "Wuthering Heights                       Emily Brontë             1847                          \n\n";
+                "Wuthering Heights                       Emily Brontë             1847                          \n" +
+                "\n" +
+                "Check out book by inputting its title\n\n";
         assertEquals(expected, outContent.toString());
     }
 
