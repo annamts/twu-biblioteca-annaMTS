@@ -42,30 +42,29 @@ public class UITest {
         ui.displayNextMenu("l");
         String expected = "These are our available books:\n" +
                 "\n" +
-                "In Search of Lost Time                  Marcel Proust            1913                          \n" +
-                "Don Quixote                             Miguel de Cervantes      1605                          \n" +
-                "Ulysses                                 James Joyce              1922                          \n" +
-                "The Great Gatsby                        F. Scott Fitzgerald      1925                          \n" +
-                "Moby Dick                               Herman Melville          1851                          \n" +
-                "Hamlet                                  William Shakespeare      1602                          \n" +
-                "War and Peace                           Leo Tolstoy              1869                          \n" +
-                "One Hundred Years of Solitude           Gabriel Garcia Marquez   1967                          \n" +
-                "The Divine Comedy                       Dante Alighieri          1320                          \n" +
-                "The Brothers Karamazov                  Fyodor Dostoyevsky       1879                          \n" +
-                "Madame Bovary                           Gustave Flaubert         1857                          \n" +
-                "The Adventures of Huckleberry Finn      Mark Twain               1884                          \n" +
-                "Lolita                                  Vladimir Nabokov         1955                          \n" +
-                "Alice's Adventures in Wonderland        Lewis Carroll            1865                          \n" +
-                "Wuthering Heights                       Emily Brontë             1847                          \n" +
-                "\n" +
-                "Check out book by inputting its title\n\n";
+                "In Search of Lost Time                   Marcel Proust             1913                          \n" +
+                "Don Quixote                              Miguel de Cervantes       1605                          \n" +
+                "Ulysses                                  James Joyce               1922                          \n" +
+                "The Great Gatsby                         F. Scott Fitzgerald       1925                          \n" +
+                "Moby Dick                                Herman Melville           1851                          \n" +
+                "Hamlet                                   William Shakespeare       1602                          \n" +
+                "War and Peace                            Leo Tolstoy               1869                          \n" +
+                "One Hundred Years of Solitude            Gabriel Garcia Marquez    1967                          \n" +
+                "The Divine Comedy                        Dante Alighieri           1320                          \n" +
+                "The Brothers Karamazov                   Fyodor Dostoyevsky        1879                          \n" +
+                "Madame Bovary                            Gustave Flaubert          1857                          \n" +
+                "The Adventures of Huckleberry Finn       Mark Twain                1884                          \n" +
+                "Lolita                                   Vladimir Nabokov          1955                          \n" +
+                "Alice's Adventures in Wonderland         Lewis Carroll             1865                          \n" +
+                "Wuthering Heights                        Emily Brontë              1847                          \n" +
+                "\n";
         assertEquals(expected, outContent.toString());
     }
 
     @Test
     public void mainMenuIsPrinted() {
         ui.displayNextMenu("m");
-        String expected = "Select from the following options by inputting the letter on the left:\n\n\tl\tList of books\n";
+        String expected = "Select from the following options by inputting the letter on the left:\n\n\tl\tList of books\n\tc\tCheck out a book\n";
         assertEquals(expected, outContent.toString());
     }
 }

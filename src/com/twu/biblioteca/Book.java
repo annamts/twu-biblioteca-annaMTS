@@ -4,11 +4,13 @@ public class Book {
     private String title;
     private String author;
     private Integer yearOfPublishing;
+    private Boolean available;
 
     public Book(String title, String author, Integer yearOfPublishing) {
         this.title = title;
         this.author = author;
         this.yearOfPublishing = yearOfPublishing;
+        this.available = true;
     }
 
     public String toString() {
@@ -16,7 +18,11 @@ public class Book {
     }
 
     public String toFormattedString() {
-        return String.format("%-40s", title) + String.format("%-25s", author) + String.format("%-30d", yearOfPublishing);
+        return String.format("%-40s %-25s %-30d", title, author, yearOfPublishing);
+    }
+
+    public void checkOut() {
+        this.available = false;
     }
 
     public String getTitle() {
@@ -29,5 +35,9 @@ public class Book {
 
     public Integer getYearOfPublishing() {
         return yearOfPublishing;
+    }
+
+    public Boolean isAvailable() {
+        return available;
     }
 }

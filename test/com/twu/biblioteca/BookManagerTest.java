@@ -18,12 +18,6 @@ public class BookManagerTest {
     }
 
     @Test
-    public void bookIsCheckedOutWhenBookIsFound() {
-        BookManager.checkOut("Lolita");
-        assertEquals(14, BookManager.getBookList().size());
-    }
-
-    @Test
     public void listOfBooksIsNotModifiedWhenBookIsNotFound() {
         BookManager.checkOut("Blablabla");
         assertEquals(15, BookManager.getBookList().size());

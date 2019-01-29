@@ -22,6 +22,12 @@ public class BookTest {
 
     @Test
     public void bookIsTurnedIntoFormattedString() {
-        assertEquals("The Blabla Book                         Important Person         2025                          ", book.toFormattedString());
+        assertEquals("The Blabla Book                          Important Person          2025                          ", book.toFormattedString());
+    }
+
+    @Test
+    public void availableIsSetToFalseWhenBookIsCheckedOut() {
+        book.checkOut();
+        assertFalse(book.isAvailable());
     }
 }

@@ -31,6 +31,11 @@ public class MenuTest {
 
     @Test
     public void checkOutReturnsErrorMessageWhenBookWasNotCheckedOut() {
-        assertEquals("'Blablabla' was not found", menu.checkOutBook("Blablabla"));
+        assertEquals("Please select a valid option!", menu.checkOutBook("Blablabla"));
+    }
+
+    @Test
+    public void whenInputIsBookTitleBookIsCheckedOut() {
+        assertEquals("The book 'Lolita' has been checked out", menu.next("Lolita"));
     }
 }

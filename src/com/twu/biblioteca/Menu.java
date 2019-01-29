@@ -1,33 +1,35 @@
 package com.twu.biblioteca;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public class Menu {
-    private Map<String, String> options;
-
-    public Menu() {
-        options = new HashMap<>();
-        options.put("m", mainMenu());
-        options.put("l", listOfBooks());
-        options.put("q", null);
-    }
 
     public String next(String input) {
-        return options.containsKey(input)? options.get(input) : "Please select a valid option!";
+        switch(input) {
+            case "m":
+                return mainMenu();
+            case "l":
+                return listOfBooks();
+            case "c":
+                return checkOutMenu();
+            case "q":
+                return null;
+        }
+        return checkOutBook(input);
     }
 
     public String listOfBooks() {
         String result = "These are our available books:\n\n";
         for (Book book : BookManager.getBookList()) {
-            result += book.toFormattedString() + "\n";
+            if (book.isAvailable()){
+                result += book.toFormattedString() + "\n";
+            }
         }
-        result += "\nCheck out book by inputting its title\n";
         return result;
     }
 
     public String mainMenu() {
-        return "Select from the following options by inputting the letter on the left:\n\n\tl\tList of books";
+        return "Select from the following options by inputting the letter on the left:\n" +
+                "\n\tl\tList of books" +
+                "\n\tc\tCheck out a book";
     }
 
     public String quitOption() {
@@ -38,7 +40,15 @@ public class Menu {
         return "\tm\tMain menu";
     }
 
+    public String checkOutMenu() {
+        return listOfBooks() + "\nInput the title of the book you wish to check out\n";
+    }
+
     public String checkOutBook(String bookTitle) {
-        return BookManager.checkOut(bookTitle)? "The book '" + bookTitle + "' has been checked out" : "'" + bookTitle + "' was not found";
+        if(BookManager.checkOut(bookTitle)) {
+            return "The book '" + bookTitle + "' has been checked out";
+        } else {
+            return "Please select a valid option!";
+        }
     }
 }

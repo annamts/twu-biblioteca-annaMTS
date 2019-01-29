@@ -17,7 +17,7 @@ public class BookManager {
     public static Boolean checkOut(String bookTitle) {
         for(Book book : bookList) {
             if (bookTitle.equals(book.getTitle())) {
-                bookList.remove(book);
+                book.checkOut();
                 return true;
             }
         }
