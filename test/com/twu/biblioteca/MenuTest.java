@@ -26,7 +26,7 @@ public class MenuTest {
 
     @Test
     public void checkOutReturnsSuccessMessageWhenBookIsCheckedOut() {
-        assertEquals("The book 'Lolita' has been checked out", menu.checkOutBook("Lolita"));
+        assertEquals("Thank you! Enjoy the book", menu.checkOutBook("Lolita"));
     }
 
     @Test
@@ -36,6 +36,6 @@ public class MenuTest {
 
     @Test
     public void whenInputIsBookTitleBookIsCheckedOut() {
-        assertEquals("The book 'Lolita' has been checked out", menu.next("Lolita"));
+        assertEquals("Thank you! Enjoy the book", menu.next("Lolita"));
     }
 }

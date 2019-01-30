@@ -12,6 +12,8 @@ public class Menu {
                 return checkOutMenu();
             case "q":
                 return null;
+//            default:
+//                return "Please select a valid option!";
         }
         return checkOutBook(input);
     }
@@ -46,7 +48,7 @@ public class Menu {
 
     public String checkOutBook(String bookTitle) {
         if(BookManager.checkOut(bookTitle)) {
-            return "The book '" + bookTitle + "' has been checked out";
+            return "Thank you! Enjoy the book";
         } else {
             return "Please select a valid option!";
         }
