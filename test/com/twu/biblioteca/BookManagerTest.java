@@ -24,6 +24,16 @@ public class BookManagerTest {
     }
 
     @Test
+    public void bookObjectIsFoundByTitle() {
+        assertEquals("Lolita", BookManager.findBook("Lolita").getTitle());
+    }
+
+    @Test
+    public void tryingToFindBookThatIsNotInTheListReturnsNull() {
+        assertEquals(null, BookManager.findBook("bla"));
+    }
+
+    @Test
     public void checkOutReturnsTrueWhenBookIsFound() {
         assertTrue(BookManager.checkOut("Lolita"));
     }
@@ -32,4 +42,11 @@ public class BookManagerTest {
     public void checkOutReturnsFalseWhenBookIsNotFound() {
         assertFalse(BookManager.checkOut("Blablabla"));
     }
+
+    @Test
+    public void bookIsCheckedOutWhenItIsFound() {
+        BookManager.checkOut("Lolita");
+        assertEquals(false, BookManager.findBook("Lolita").isAvailable());
+    }
+
 }

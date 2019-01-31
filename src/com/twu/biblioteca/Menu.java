@@ -1,56 +1,49 @@
 package com.twu.biblioteca;
 
-public class Menu {
+import com.twu.biblioteca.Option;
 
-    public String next(String input) {
-        switch(input) {
-            case "m":
-                return mainMenu();
-            case "l":
-                return listOfBooks();
-            case "c":
-                return checkOutMenu();
-            case "q":
-                return null;
-//            default:
-//                return "Please select a valid option!";
-        }
-        return checkOutBook(input);
+import java.util.ArrayList;
+import java.util.List;
+
+public abstract class Menu {
+    private String info;
+    private List<Option> options;
+
+    public Menu(String info) {
+        this.info = info;
+        this.options = new ArrayList<>();
     }
 
-    public String listOfBooks() {
-        String result = "These are our available books:\n\n";
-        for (Book book : BookManager.getBookList()) {
-            if (book.isAvailable()){
-                result += book.toFormattedString() + "\n";
-            }
+    public void addOption(Option option) {
+        options.add(option);
+    }
+
+    public String toString() {
+        String result = info + "\n";
+        for(Option option : options) {
+            result += "\n" + option.toString();
         }
         return result;
     }
 
-    public String mainMenu() {
-        return "Select from the following options by inputting the letter on the left:\n" +
-                "\n\tl\tList of books" +
-                "\n\tc\tCheck out a book";
-    }
-
-    public String quitOption() {
-        return "\tq\tQuit application";
-    }
-
-    public String mainMenuOption() {
-        return "\tm\tMain menu";
-    }
-
-    public String checkOutMenu() {
-        return listOfBooks() + "\nInput the title of the book you wish to check out\n";
-    }
-
-    public String checkOutBook(String bookTitle) {
-        if(BookManager.checkOut(bookTitle)) {
-            return "Thank you! Enjoy the book";
-        } else {
-            return "Please select a valid option!";
+    public Option findOption(String input) {
+        for (Option option : options) {
+            if (option.getShortcut().equals(input)) {
+                return option;
+            }
         }
+        return null;
+    }
+
+    public void setInfo(String info) {
+        this.info = info;
+    }
+
+    public String getInfo() {
+        return info;
+    }
+
+    public List<Option> getOptions() {
+        return options;
     }
 }

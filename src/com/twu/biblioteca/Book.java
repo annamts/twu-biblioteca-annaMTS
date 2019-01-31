@@ -13,16 +13,16 @@ public class Book {
         this.available = true;
     }
 
-    public String toString() {
-        return "\tTitle: " + title + "\n\tAuthor: " + author + "\n\tYear of publishing: " + yearOfPublishing + "\n";
-    }
-
     public String toFormattedString() {
         return String.format("%-40s %-25s %-30d", title, author, yearOfPublishing);
     }
 
     public void checkOut() {
         this.available = false;
+    }
+
+    public void returnBook() {
+        this.available = true;
     }
 
     public String getTitle() {

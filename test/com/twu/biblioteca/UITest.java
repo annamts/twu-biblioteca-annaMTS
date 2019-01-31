@@ -11,14 +11,12 @@ import static org.junit.Assert.*;
 
 public class UITest {
 
-    private UI ui;
     private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
     private final PrintStream originalOut = System.out;
 
     @Before
     public void setUpUI() {
         BookManager.addBookList("test_resources/books.txt");
-        ui = new UI();
     }
 
     @Before
@@ -33,38 +31,7 @@ public class UITest {
 
     @Test
     public void userGreetingIsPrinted() {
-        ui.firstGreeting();
+        UI.firstGreeting();
         assertEquals("Welcome to Biblioteca. Your one-stop-shop for great book titles in Bangalore!\n\n", outContent.toString());
-    }
-
-    @Test
-    public void listOfBooksIsPrinted() {
-        ui.displayNextMenu("l");
-        String expected = "These are our available books:\n" +
-                "\n" +
-                "In Search of Lost Time                   Marcel Proust             1913                          \n" +
-                "Don Quixote                              Miguel de Cervantes       1605                          \n" +
-                "Ulysses                                  James Joyce               1922                          \n" +
-                "The Great Gatsby                         F. Scott Fitzgerald       1925                          \n" +
-                "Moby Dick                                Herman Melville           1851                          \n" +
-                "Hamlet                                   William Shakespeare       1602                          \n" +
-                "War and Peace                            Leo Tolstoy               1869                          \n" +
-                "One Hundred Years of Solitude            Gabriel Garcia Marquez    1967                          \n" +
-                "The Divine Comedy                        Dante Alighieri           1320                          \n" +
-                "The Brothers Karamazov                   Fyodor Dostoyevsky        1879                          \n" +
-                "Madame Bovary                            Gustave Flaubert          1857                          \n" +
-                "The Adventures of Huckleberry Finn       Mark Twain                1884                          \n" +
-                "Lolita                                   Vladimir Nabokov          1955                          \n" +
-                "Alice's Adventures in Wonderland         Lewis Carroll             1865                          \n" +
-                "Wuthering Heights                        Emily Brontë              1847                          \n" +
-                "\n";
-        assertEquals(expected, outContent.toString());
-    }
-
-    @Test
-    public void mainMenuIsPrinted() {
-        ui.displayNextMenu("m");
-        String expected = "Select from the following options by inputting the letter on the left:\n\n\tl\tList of books\n\tc\tCheck out a book\n";
-        assertEquals(expected, outContent.toString());
     }
 }

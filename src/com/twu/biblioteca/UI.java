@@ -5,48 +5,60 @@ import java.util.Scanner;
 public class UI {
     private static final String GREETING = "Welcome to Biblioteca. Your one-stop-shop for great book titles in Bangalore!\n";
     private static final String GOODBYE = "Bye!";
+    private static final String WRONG_INPUT = "Please select a valid option!";
 
-    Menu menu;
-    Scanner scanner;
+    private static Scanner scanner = new Scanner(System.in);
+    private static Menu main = new MainMenu();
+    private static Menu listOfBooks = new ListMenu();
+    private static Menu checkout = new CheckoutMenu();
 
-    public UI() {
-        this.menu = new Menu();
-        this.scanner = new Scanner(System.in);
+    public static void startUI() {
+        System.out.println(GREETING);
+        mainMenuInteraction();
     }
 
-    public void startUI() {
-        firstGreeting();
-        String input = "m";
-        while (thereIsNextMenu(input)) {
-            displayNextMenu(input);
-            displayOtherMenuOptions();
-            input = getUserInput();
+    public static String getUserInput() {
+        return scanner.nextLine();
+    }
+
+    public static void interact(Menu menu) {
+        System.out.println(menu.toString());
+        nextAction(menu);
+    }
+
+    public static void nextAction(Menu menu) {
+        Option option = menu.findOption(getUserInput());
+        if(option == null) {
+            wrongInput();
+            nextAction(menu);
+        } else {
+            option.action();
         }
-        goodbyeMessage();
     }
 
-    public void firstGreeting() {
+    public static void mainMenuInteraction() {
+        interact(main);
+    }
+
+    public static void listOfBooksInteraction() {
+        listOfBooks.setInfo(BookManager.bookListAsString());
+        interact(listOfBooks);
+    }
+
+    public static void checkOutABookInteraction() {
+        interact(checkout);
+    }
+
+
+    public static void wrongInput() {
+        System.out.println(WRONG_INPUT);
+    }
+
+    public static void firstGreeting() {
         System.out.println(GREETING);
     }
 
-    public void goodbyeMessage() {
+    public static void goodbyeMessage() {
         System.out.println(GOODBYE);
-    }
-
-    public void displayNextMenu(String input) {
-        System.out.println(menu.next(input));
-    }
-
-    public Boolean thereIsNextMenu(String input) {
-        return menu.next(input) != null;
-    }
-
-    public void displayOtherMenuOptions() {
-        System.out.println(menu.mainMenuOption());
-        System.out.println(menu.quitOption());
-    }
-
-    public String getUserInput() {
-        return scanner.nextLine();
     }
 }
