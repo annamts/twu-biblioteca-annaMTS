@@ -4,19 +4,19 @@ import com.twu.biblioteca.Book;
 import com.twu.biblioteca.BookManager;
 import com.twu.biblioteca.UI;
 
-public class CheckoutBookOption extends Option{
+public class ReturnBookOption extends Option {
     private Book book;
 
-    public CheckoutBookOption(Book book) {
+    public ReturnBookOption(Book book) {
         super(book.getTitle(), book.getTitle());
         this.book = book;
     }
 
     public void action() {
-        if(BookManager.checkOut(book.getTitle())) {
-            System.out.println("Thank you! Enjoy the book\n");
+        if(BookManager.returnBook(book.getTitle())) {
+            System.out.println("Thank you for returning the book\n");
         } else {
-            System.out.println("Sorry, that book is not available\n");
+            System.out.println("That is not a valid book return\n");
         }
         UI.mainMenuInteraction();
     }

@@ -1,5 +1,6 @@
 package com.twu.biblioteca;
 
+import com.twu.biblioteca.menus.MainMenu;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -27,11 +28,5 @@ public class UITest {
     @After
     public void restoreStreams() {
         System.setOut(originalOut);
-    }
-
-    @Test
-    public void userGreetingIsPrinted() {
-        UI.firstGreeting();
-        assertEquals("Welcome to Biblioteca. Your one-stop-shop for great book titles in Bangalore!\n\n", outContent.toString());
     }
 }

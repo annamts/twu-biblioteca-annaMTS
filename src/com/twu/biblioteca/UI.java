@@ -1,5 +1,8 @@
 package com.twu.biblioteca;
 
+import com.twu.biblioteca.menus.*;
+import com.twu.biblioteca.options.Option;
+
 import java.util.Scanner;
 
 public class UI {
@@ -11,9 +14,10 @@ public class UI {
     private static Menu main = new MainMenu();
     private static Menu listOfBooks = new ListMenu();
     private static Menu checkout = new CheckoutMenu();
+    private static Menu returnBook = new ReturnMenu();
 
     public static void startUI() {
-        System.out.println(GREETING);
+        firstGreeting();
         mainMenuInteraction();
     }
 
@@ -49,6 +53,9 @@ public class UI {
         interact(checkout);
     }
 
+    public static void returnABookInteraction() {
+        interact(returnBook);
+    }
 
     public static void wrongInput() {
         System.out.println(WRONG_INPUT);

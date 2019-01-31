@@ -26,7 +26,7 @@ public class BookManager {
 
     public static Book findBook(String bookTitle) {
         for(Book book : bookList) {
-            if (bookTitle.equals(book.getTitle())) {
+            if (bookTitle.toLowerCase().equals(book.getTitle().toLowerCase())) {
                 return book;
             }
         }
@@ -40,5 +40,15 @@ public class BookManager {
             return true;
         }
         return false;
+    }
+
+    public static boolean returnBook(String bookTitle) {
+        Book book = findBook(bookTitle);
+        if (book == null || book.isAvailable()) {
+            return false;
+        } else {
+            book.returnBook();
+            return true;
+        }
     }
 }

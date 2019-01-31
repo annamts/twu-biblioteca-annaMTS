@@ -1,5 +1,6 @@
-package com.twu.biblioteca;
+package com.twu.biblioteca.options;
 
+import com.twu.biblioteca.UI;
 import com.twu.biblioteca.options.Option;
 
 public class QuitOption extends Option {

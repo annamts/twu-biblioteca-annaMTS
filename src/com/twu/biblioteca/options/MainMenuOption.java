@@ -1,4 +1,6 @@
-package com.twu.biblioteca;
+package com.twu.biblioteca.options;
+
+import com.twu.biblioteca.UI;
 
 public class MainMenuOption extends Option {
 

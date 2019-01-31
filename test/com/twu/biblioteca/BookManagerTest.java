@@ -46,7 +46,23 @@ public class BookManagerTest {
     @Test
     public void bookIsCheckedOutWhenItIsFound() {
         BookManager.checkOut("Lolita");
-        assertEquals(false, BookManager.findBook("Lolita").isAvailable());
+        assertFalse(BookManager.findBook("Lolita").isAvailable());
+    }
+
+    @Test
+    public void returnBookReturnsTrueWhenBookIsSuccessfullyReturned() {
+        BookManager.checkOut("Lolita");
+        assertTrue(BookManager.returnBook("Lolita"));
+    }
+
+    @Test
+    public void returnBookReturnsFalseWhenBookIsAlreadyThere() {
+        assertFalse(BookManager.returnBook("Lolita"));
+    }
+
+    @Test
+    public void returnBookReturnsFalseWhenBookIsNotInBooklist() {
+        assertFalse(BookManager.returnBook("bla"));
     }
 
 }
