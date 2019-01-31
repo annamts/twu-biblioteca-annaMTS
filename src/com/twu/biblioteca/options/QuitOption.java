@@ -1,6 +1,8 @@
 package com.twu.biblioteca;
 
-public class QuitOption extends Option{
+import com.twu.biblioteca.options.Option;
+
+public class QuitOption extends Option {
     public QuitOption() {
         super("q", "Quit application");
     }

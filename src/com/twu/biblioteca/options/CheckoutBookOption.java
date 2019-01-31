@@ -1,4 +1,8 @@
-package com.twu.biblioteca;
+package com.twu.biblioteca.options;
+
+import com.twu.biblioteca.Book;
+import com.twu.biblioteca.BookManager;
+import com.twu.biblioteca.UI;
 
 public class BookOption extends Option{
     private Book book;

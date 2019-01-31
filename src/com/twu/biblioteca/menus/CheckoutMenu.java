@@ -1,5 +1,9 @@
 package com.twu.biblioteca;
 
+import com.twu.biblioteca.options.BookOption;
+import com.twu.biblioteca.options.MainMenuOption;
+import com.twu.biblioteca.options.Option;
+
 public class CheckoutMenu extends Menu {
     public CheckoutMenu() {
         super("Input the title of the book you wish to check out");
