@@ -1,71 +1,39 @@
 package com.twu.biblioteca;
 
-import com.twu.biblioteca.menus.*;
-import com.twu.biblioteca.options.Option;
-
-import java.util.Scanner;
-
 public class UI {
-    private static final String GREETING = "Welcome to Biblioteca. Your one-stop-shop for great book titles in Bangalore!\n";
-    private static final String GOODBYE = "Bye!";
-    private static final String WRONG_INPUT = "Please select a valid option!";
-
-    private static Scanner scanner = new Scanner(System.in);
-    private static Menu main = new MainMenu();
-    private static Menu listOfBooks = new ListMenu();
-    private static Menu checkout = new CheckoutMenu();
-    private static Menu returnBook = new ReturnMenu();
 
     public static void startUI() {
-        firstGreeting();
-        mainMenuInteraction();
-    }
-
-    public static String getUserInput() {
-        return scanner.nextLine();
-    }
-
-    public static void interact(Menu menu) {
-        System.out.println(menu.toString());
-        nextAction(menu);
-    }
-
-    public static void nextAction(Menu menu) {
-        Option option = menu.findOption(getUserInput());
-        if(option == null) {
-            wrongInput();
-            nextAction(menu);
-        } else {
-            option.action();
+        Output.firstGreeting();
+        Output.displayMainMenu();
+        String input = Input.getUserInput();
+        while(!input.equals("q")) {
+            respondToInput(input);
+            input = Input.getUserInput();
         }
+        Output.goodbyeMessage();
     }
 
-    public static void mainMenuInteraction() {
-        interact(main);
-    }
-
-    public static void listOfBooksInteraction() {
-        listOfBooks.setInfo(BookManager.bookListAsString());
-        interact(listOfBooks);
-    }
-
-    public static void checkOutABookInteraction() {
-        interact(checkout);
-    }
-
-    public static void returnABookInteraction() {
-        interact(returnBook);
-    }
-
-    public static void wrongInput() {
-        System.out.println(WRONG_INPUT);
-    }
-
-    public static void firstGreeting() {
-        System.out.println(GREETING);
-    }
-
-    public static void goodbyeMessage() {
-        System.out.println(GOODBYE);
+    public static void respondToInput(String input) {
+        switch(Input.getFirstLetterOfInput(input)) {
+            case "l":
+                Output.displayListOfBooks();
+                break;
+            case "c":
+                if (BookManager.checkOut(Input.extractBookTitle(input))) {
+                    Output.successfulCheckout();
+                } else {
+                    Output.unsuccessfulCheckout();
+                }
+                break;
+            case "r":
+                if (BookManager.returnBook(Input.extractBookTitle(input))) {
+                    Output.successfulReturn();
+                } else {
+                    Output.unsuccessfulReturn();
+                }
+                break;
+            default:
+                Output.wrongInput();
+        }
     }
 }
