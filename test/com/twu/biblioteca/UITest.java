@@ -11,12 +11,14 @@ import static org.junit.Assert.*;
 
 public class UITest {
 
+    private UI ui;
     private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
     private final PrintStream originalOut = System.out;
 
     @Before
     public void setUpUI() {
         BookManager.addBookList("test_resources/books.txt");
+        ui = new UI();
     }
 
     @Before
@@ -55,44 +57,44 @@ public class UITest {
 
     @Test
     public void listOfBooksIsDisplayedWhenInputIsL() {
-        UI.respondToInput("l");
+        ui.respondToInput("l");
         assertEquals(BookManager.bookListAsString() + "\n", outContent.toString());
     }
 
     @Test
     public void userGetsNotifiedWhenChoosingAnInvalidOption() {
-        UI.respondToInput("lalala");
-        assertEquals("Please select a valid option!\n", outContent.toString());
+        ui.respondToInput("lalala");
+        assertEquals("Please select a valid option!\n\n", outContent.toString());
     }
 
     @Test
     public void whenUserChecksOutBookTheyGetSuccessMessage() {
-        UI.respondToInput("c Lolita");
-        assertEquals("Thank you! Enjoy the book\n", outContent.toString());
+        ui.respondToInput("c Lolita");
+        assertEquals("Thank you! Enjoy the book\n\n", outContent.toString());
     }
 
     @Test
     public void whenUserTriesToCheckOutBookThatDoesntExistTheyGetNotified() {
-        UI.respondToInput("c blblbl");
-        assertEquals("Sorry, that book is not available\n", outContent.toString());
+        ui.respondToInput("c blblbl");
+        assertEquals("Sorry, that book is not available\n\n", outContent.toString());
     }
 
     @Test
     public void whenUserReturnsBookTheyGetSuccessMessage() {
         BookManager.checkOut("Lolita");
-        UI.respondToInput("r Lolita");
-        assertEquals("Thank you for returning the book\n", outContent.toString());
+        ui.respondToInput("r Lolita");
+        assertEquals("Thank you for returning the book\n\n", outContent.toString());
     }
 
     @Test
     public void whenUserTriesToReturnBookThatIsAlreadyThereTheyAreNotified() {
-        UI.respondToInput("r Lolita");
-        assertEquals("That is not a valid book to return\n", outContent.toString());
+        ui.respondToInput("r Lolita");
+        assertEquals("That is not a valid book to return\n\n", outContent.toString());
     }
 
     @Test
     public void whenUserTriesToReturnBookThatDoesntExistTheyGetNotified() {
-        UI.respondToInput("r jhdga");
-        assertEquals("That is not a valid book to return\n", outContent.toString());
+        ui.respondToInput("r jhdga");
+        assertEquals("That is not a valid book to return\n\n", outContent.toString());
     }
 }

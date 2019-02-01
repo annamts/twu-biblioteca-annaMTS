@@ -17,7 +17,7 @@ public class BookManager {
                 result += "\n" + book.toFormattedString();
             }
         }
-        return result;
+        return result + "\n";
     }
 
     public static List<Book> getBookList() {
