@@ -10,7 +10,7 @@ import java.util.List;
 public class BookParser {
     public static List<Book> createListOfBooks(String bookFile) {
         List <Book> listOfBooks = new ArrayList<Book>();
-        String line = null;
+        String line;
 
         try {
             FileReader fileReader =
