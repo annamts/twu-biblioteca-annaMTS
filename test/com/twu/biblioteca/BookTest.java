@@ -14,13 +14,6 @@ public class BookTest {
     }
 
     @Test
-    public void bookObjectIsCreated() {
-        assertEquals("The Blabla Book", book.getTitle());
-        assertEquals("Important Person", book.getAuthor());
-        assertEquals((Integer)2025, book.getYearOfPublishing());
-    }
-
-    @Test
     public void bookIsTurnedIntoFormattedString() {
         assertEquals("The Blabla Book                          Important Person          2025                          ", book.toFormattedString());
     }

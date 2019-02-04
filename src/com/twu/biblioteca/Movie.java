@@ -1,18 +1,16 @@
 package com.twu.biblioteca;
 
-public class Movie {
+public class Movie extends Resource {
     String name;
     String director;
     Integer year;
     Double rating;
-    Boolean available;
 
     public Movie(String name, String director, Integer year, Double rating) {
         this.name = name;
         this.director = director;
         this.year = year;
         this.rating = rating;
-        this.available = true;
     }
 
     public String toFormattedString() {
@@ -33,9 +31,5 @@ public class Movie {
 
     public Double getRating() {
         return rating;
-    }
-
-    public Boolean isAvailable() {
-        return available;
     }
 }

@@ -19,7 +19,21 @@ public class MovieManager {
         return result + "\n";
     }
 
-    public static List<Movie> getMovieList() {
-        return movieList;
+    public static Movie findMovie(String movieName) {
+        for(Movie movie : movieList) {
+            if (movieName.toLowerCase().equals(movie.getName().toLowerCase())) {
+                return movie;
+            }
+        }
+        return null;
+    }
+
+    public static Boolean checkOut(String movieName) {
+        Movie movie = findMovie(movieName);
+        if (movie != null && movie.isAvailable()) {
+            movie.checkOut();
+            return true;
+        }
+        return false;
     }
 }

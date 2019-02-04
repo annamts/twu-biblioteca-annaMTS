@@ -22,9 +22,13 @@ public class UI {
             case Input.MOVIE_LIST:
                 Output.displayListOfMovies();
                 break;
-            case Input.CHECK_OUT:
-                Boolean checkOutSuccess = BookManager.checkOut(Input.extractBookTitle(input));
-                Output.checkOut(checkOutSuccess);
+            case Input.CHECK_OUT_BOOK:
+                Boolean checkOutBookSuccess = BookManager.checkOut(Input.extractBookTitle(input));
+                Output.checkOutBook(checkOutBookSuccess);
+                break;
+            case Input.CHECK_OUT_MOVIE:
+                Boolean checkOutMovieSuccess = MovieManager.checkOut(Input.extractBookTitle(input));
+                Output.checkOutMovie(checkOutMovieSuccess);
                 break;
             case Input.RETURN:
                 Boolean returnSuccess = BookManager.returnBook(Input.extractBookTitle(input));

@@ -46,13 +46,15 @@ public class UITest {
     public void mainMenuIsDisplayed() {
         Output.displayMainMenu();
         String expected = "Choose an option by inputting the letter on the left.\n" +
-                "Follow it by a space and the title of the book if you are checking out or returning a book.\n\n" +
+                "Follow it by a space and the title of the book if you are checking out or returning a book.\n" +
+                "\n" +
                 "\tb\tList of books\n" +
                 "\tm\tList of movies\n" +
-                "\tc\tCheck out a book\n" +
+                "\tcb\tCheck out a book\n" +
+                "\tcm\tCheck out a movie\n" +
                 "\tr\tReturn a book\n" +
-                "\tq\tQuit application";
-        assertEquals(expected + "\n", outContent.toString());
+                "\tq\tQuit application\n";
+        assertEquals(expected, outContent.toString());
     }
 
     @Test
@@ -69,13 +71,13 @@ public class UITest {
 
     @Test
     public void whenUserChecksOutBookTheyGetSuccessMessage() {
-        UI.respondToInput("c Lolita");
+        UI.respondToInput("cb Lolita");
         assertEquals("Thank you! Enjoy the book\n\n", outContent.toString());
     }
 
     @Test
     public void whenUserTriesToCheckOutBookThatDoesntExistTheyGetNotified() {
-        UI.respondToInput("c blblbl");
+        UI.respondToInput("cb blblbl");
         assertEquals("Sorry, that book is not available\n\n", outContent.toString());
     }
 
@@ -99,8 +101,20 @@ public class UITest {
     }
 
     @Test
-    public void listOfMoviesIsDisplayesWhenInputIsM() {
+    public void listOfMoviesIsDisplayedWhenInputIsM() {
         UI.respondToInput("m");
         assertEquals(MovieManager.movieListAsString() + "\n", outContent.toString());
+    }
+
+    @Test
+    public void whenUserTriesToCheckOutAvailableMovieTheyGetSuccessMessage() {
+        UI.respondToInput("cm Pulp Fiction");
+        assertEquals("Thank you! Enjoy the movie\n\n", outContent.toString());
+    }
+
+    @Test
+    public void whenUserTriesToCheckOutUnavailableMovieTheyAreNotified() {
+        UI.respondToInput("cm blabla");
+        assertEquals("Sorry, that movie is not available\n\n", outContent.toString());
     }
 }
