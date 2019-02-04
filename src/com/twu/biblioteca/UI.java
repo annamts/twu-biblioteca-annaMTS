@@ -16,8 +16,11 @@ public class UI {
 
     public static void respondToInput(String input) {
         switch(Input.getFirstLetter(input)) {
-            case Input.LIST:
+            case Input.BOOK_LIST:
                 Output.displayListOfBooks();
+                break;
+            case Input.MOVIE_LIST:
+                Output.displayListOfMovies();
                 break;
             case Input.CHECK_OUT:
                 Boolean checkOutSuccess = BookManager.checkOut(Input.extractBookTitle(input));

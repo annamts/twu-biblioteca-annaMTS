@@ -17,6 +17,7 @@ public class UITest {
     @Before
     public void setUpUI() {
         BookManager.addBookList("test_resources/books.txt");
+        MovieManager.addMovieList("test_resources/movies.txt");
     }
 
     @Before
@@ -46,7 +47,8 @@ public class UITest {
         Output.displayMainMenu();
         String expected = "Choose an option by inputting the letter on the left.\n" +
                 "Follow it by a space and the title of the book if you are checking out or returning a book.\n\n" +
-                "\tl\tList of books\n" +
+                "\tb\tList of books\n" +
+                "\tm\tList of movies\n" +
                 "\tc\tCheck out a book\n" +
                 "\tr\tReturn a book\n" +
                 "\tq\tQuit application";
@@ -54,8 +56,8 @@ public class UITest {
     }
 
     @Test
-    public void listOfBooksIsDisplayedWhenInputIsL() {
-        UI.respondToInput("l");
+    public void listOfBooksIsDisplayedWhenInputIsB() {
+        UI.respondToInput("b");
         assertEquals(BookManager.bookListAsString() + "\n", outContent.toString());
     }
 
@@ -94,5 +96,11 @@ public class UITest {
     public void whenUserTriesToReturnBookThatDoesntExistTheyGetNotified() {
         UI.respondToInput("r jhdga");
         assertEquals("That is not a valid book to return\n\n", outContent.toString());
+    }
+
+    @Test
+    public void listOfMoviesIsDisplayesWhenInputIsM() {
+        UI.respondToInput("m");
+        assertEquals(MovieManager.movieListAsString() + "\n", outContent.toString());
     }
 }

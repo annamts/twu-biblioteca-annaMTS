@@ -4,7 +4,8 @@ public class Output {
     private static final String GREETING = "Welcome to Biblioteca. Your one-stop-shop for great book titles in Bangalore!\n";
     private static final String MAIN_MENU = "Choose an option by inputting the letter on the left.\n" +
                                     "Follow it by a space and the title of the book if you are checking out or returning a book.\n\n" +
-                                    "\t" + Input.LIST + "\tList of books\n" +
+                                    "\t" + Input.BOOK_LIST + "\tList of books\n" +
+                                    "\t" + Input.MOVIE_LIST + "\tList of movies\n" +
                                     "\t" + Input.CHECK_OUT +"\tCheck out a book\n" +
                                     "\t" + Input.RETURN + "\tReturn a book\n" +
                                     "\t" + Input.QUIT + "\tQuit application";
@@ -26,6 +27,10 @@ public class Output {
 
     public static void displayListOfBooks() {
         System.out.println(BookManager.bookListAsString());
+    }
+
+    public static void displayListOfMovies() {
+        System.out.println(MovieManager.movieListAsString());
     }
 
     public static void checkOut(Boolean checkOutSuccess) {

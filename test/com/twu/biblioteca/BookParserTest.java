@@ -20,4 +20,5 @@ public class BookParserTest {
         List<Book> bookList = BookParser.createListOfBooks("test_resources/books.txt");
         assertEquals("In Search of Lost Time", bookList.get(0).getTitle());
     }
+
 }

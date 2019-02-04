@@ -44,4 +44,5 @@ public class BookParser {
         String yearWithoutNewLine = bookInfo[2].replaceAll("[^0-9]", "");
         return new Book(title, author, Integer.valueOf(yearWithoutNewLine));
     }
+
 }

@@ -3,7 +3,8 @@ package com.twu.biblioteca;
 import java.util.Scanner;
 
 public class Input {
-    public static final String LIST = "l";
+    public static final String BOOK_LIST = "b";
+    public static final String MOVIE_LIST = "m";
     public static final String CHECK_OUT = "c";
     public static final String RETURN = "r";
     public static final String QUIT = "q";
