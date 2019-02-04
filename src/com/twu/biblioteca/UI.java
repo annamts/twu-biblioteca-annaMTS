@@ -2,7 +2,7 @@ package com.twu.biblioteca;
 
 public class UI {
 
-    public void startUI() {
+    public static void startUI() {
         Output.firstGreeting();
         Output.displayMainMenu();
         String input = Input.get();
@@ -14,7 +14,7 @@ public class UI {
         Output.goodbyeMessage();
     }
 
-    public void respondToInput(String input) {
+    public static void respondToInput(String input) {
         switch(Input.getFirstLetter(input)) {
             case Input.LIST:
                 Output.displayListOfBooks();
