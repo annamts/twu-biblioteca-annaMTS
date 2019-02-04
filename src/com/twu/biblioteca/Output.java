@@ -30,18 +30,34 @@ public class Output {
 
     public static void checkOut(Boolean checkOutSuccess) {
         if (checkOutSuccess) {
-            System.out.println(SUCCESSFUL_CHECKOUT);
+            successfulCheckout();
         } else {
-            System.out.println(UNSUCCESSFUL_CHECKOUT);;
+            unsuccessfulCheckout();;
         }
+    }
+
+    public static void successfulCheckout() {
+        System.out.println(SUCCESSFUL_CHECKOUT);
+    }
+
+    public static void unsuccessfulCheckout() {
+        System.out.println(UNSUCCESSFUL_CHECKOUT);
     }
 
     public static void returnBook(Boolean returnSuccess) {
         if (returnSuccess) {
-            System.out.println(SUCCESSFUL_RETURN);
+            successfulReturn();
         } else {
-            System.out.println(UNSUCCESSFUL_RETURN);
+            unsuccessfulReturn();
         }
+    }
+
+    public static void successfulReturn() {
+        System.out.println(SUCCESSFUL_RETURN);
+    }
+
+    public static void unsuccessfulReturn() {
+        System.out.println(UNSUCCESSFUL_RETURN);
     }
 
     public static void wrongInput() {
