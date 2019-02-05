@@ -9,6 +9,7 @@ public class Input {
     public static final String CHECK_OUT_MOVIE = "cm";
     public static final String RETURN = "r";
     public static final String LOG_IN = "l";
+    public static final String USER_INFO = "i";
     public static final String QUIT = "q";
 
     private static Scanner scanner = new Scanner(System.in);

@@ -86,6 +86,10 @@ public class Output {
         System.out.println(WRONG_INPUT);
     }
 
+    public static void displayUserInfo() {
+        System.out.println(UI.getUser().getUserInfo());
+    }
+
     public static void goodbyeMessage() {
         System.out.println(GOODBYE);
     }

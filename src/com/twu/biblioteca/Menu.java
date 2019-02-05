@@ -15,6 +15,7 @@ public class Menu {
                                         "\t" + Input.CHECK_OUT_MOVIE + "\tCheck out a movie\n" +
                                         "\t" + Input.CHECK_OUT_BOOK + "\tCheck out a book\n" +
                                         "\t" + Input.RETURN + "\tReturn a book\n" +
+                                        "\t" + Input.USER_INFO + "\tMy personal information\n" +
                                         "\t" + Input.QUIT + "\tQuit application";
     public static final String LOG_IN_USER_ID = "Enter your user id";
     public static final String LOG_IN_USER_PASSWORD = "Enter your password";

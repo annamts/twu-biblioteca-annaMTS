@@ -53,6 +53,13 @@ public class UI {
                     Output.returnBook(returnSuccess);
                 }
                 break;
+            case Input.USER_INFO:
+                if(user == Users.NO_USER) {
+                    Output.wrongInput();
+                } else {
+                    Output.displayUserInfo();
+                }
+                break;
             default:
                 Output.wrongInput();
         }

@@ -10,7 +10,7 @@ public class UserTest {
 
     @Before
     public void setUpUser() {
-        user = new User("testUser", "testPass");
+        user = new User("testUser", "testPass", "Perico de los Palotes", "perico@gmail.com", "012345678");
     }
 
     @Test
@@ -21,5 +21,13 @@ public class UserTest {
     @Test
     public void whenPasswordIsIncorrectCheckPasswordReturnsFalse() {
         assertFalse(user.checkPassword("wrongPass"));
+    }
+
+    @Test
+    public void iCanGetUserInfoAsString() {
+        String expected = "Name: Perico de los Palotes\n" +
+                        "Email: perico@gmail.com\n" +
+                        "Phone number: 012345678\n";
+        assertEquals(expected, user.getUserInfo());
     }
 }
