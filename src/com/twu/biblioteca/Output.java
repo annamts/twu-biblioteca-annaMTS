@@ -5,6 +5,7 @@ public class Output {
     private static final String WRONG_INPUT = "Please select a valid option!\n";
     private static final String WRONG_USER_ID = "That user id does not exist\n";
     private static final String WRONG_PASSWORD = "Wrong password!\n";
+    private static final String NOT_LOGGED_IN = "Your need to log in!\n";
     private static final String SUCCESSFUL_BOOK_CHECKOUT = "Thank you! Enjoy the book\n";
     private static final String UNSUCCESSFUL_BOOK_CHECKOUT = "Sorry, that book is not available\n";
     private static final String SUCCESSFUL_MOVIE_CHECKOUT = "Thank you! Enjoy the movie\n";
@@ -39,6 +40,10 @@ public class Output {
     }
     public static void displayUserMenu() {
         System.out.println(Menu.USER);
+    }
+
+    public static void notLoggedIn() {
+        System.out.println(NOT_LOGGED_IN);
     }
 
     public static void displayListOfBooks() {

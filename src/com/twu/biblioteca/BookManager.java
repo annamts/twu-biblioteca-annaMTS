@@ -43,7 +43,7 @@ public class BookManager {
 
     public static boolean returnBook(String bookTitle) {
         Book book = findBook(bookTitle);
-        if (book == null || book.isAvailable()) {
+        if (book == null || book.getUser() != UI.getUser()) {
             return false;
         } else {
             book.returnBook();

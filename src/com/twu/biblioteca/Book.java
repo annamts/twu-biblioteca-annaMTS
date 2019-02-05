@@ -4,12 +4,17 @@ public class Book extends Resource{
     private String title;
     private String author;
     private Integer yearOfPublishing;
-    private String user;
+    private User user;
 
     public Book(String title, String author, Integer yearOfPublishing) {
         this.title = title;
         this.author = author;
         this.yearOfPublishing = yearOfPublishing;
+    }
+
+    public void checkOut() {
+        super.checkOut();
+        this.user = UI.getUser();
     }
 
     public String toFormattedString() {
@@ -32,7 +37,7 @@ public class Book extends Resource{
         return yearOfPublishing;
     }
 
-    public String getUser() {
+    public User getUser() {
         return user;
     }
 }

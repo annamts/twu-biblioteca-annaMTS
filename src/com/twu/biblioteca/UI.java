@@ -26,40 +26,41 @@ public class UI {
                 Output.displayListOfBooks();
                 break;
             case Input.LOG_IN:
-                Output.askForUserId();
-                String id = Input.get();
-                if (Users.userIdExists(id)) {
-                    User currentUser = Users.findUser(id);
-                    Output.askForPassword();
-                    String pass = Input.get();
-                    if(currentUser.checkPassword(pass)) {
-                        user = currentUser;
-                    } else {
-                        Output.wrongPassword();
-                    }
-                } else {
-                    Output.wrongUserId();
-                }
+                LogIn.logIn();
                 break;
             case Input.MOVIE_LIST:
                 Output.displayListOfMovies();
                 break;
             case Input.CHECK_OUT_BOOK:
-                //check if user is logged in
-                Boolean checkOutBookSuccess = BookManager.checkOut(Input.extractBookTitle(input));
-                Output.checkOutBook(checkOutBookSuccess);
+                if(user != Users.NO_USER) {
+                    Boolean checkOutBookSuccess = BookManager.checkOut(Input.extractBookTitle(input));
+                    Output.checkOutBook(checkOutBookSuccess);
+                } else {
+                    Output.notLoggedIn();
+                }
                 break;
             case Input.CHECK_OUT_MOVIE:
                 Boolean checkOutMovieSuccess = MovieManager.checkOut(Input.extractBookTitle(input));
                 Output.checkOutMovie(checkOutMovieSuccess);
                 break;
             case Input.RETURN:
-                //check if user is logged in and has this book
-                Boolean returnSuccess = BookManager.returnBook(Input.extractBookTitle(input));
-                Output.returnBook(returnSuccess);
+                if(user == Users.NO_USER) {
+                    Output.notLoggedIn();
+                } else {
+                    Boolean returnSuccess = BookManager.returnBook(Input.extractBookTitle(input));
+                    Output.returnBook(returnSuccess);
+                }
                 break;
             default:
                 Output.wrongInput();
         }
+    }
+
+    public static void setUser(User user) {
+        UI.user = user;
+    }
+
+    public static User getUser() {
+        return user;
     }
 }
