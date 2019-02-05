@@ -21,6 +21,10 @@ public class Book extends Resource{
         return String.format("%-40s %-25s %-30d", title, author, yearOfPublishing);
     }
 
+    public String toFormattedStringWithUser() {
+        return String.format("%-10s %-40s %-25s %-10d", user.getId(), title, author, yearOfPublishing);
+    }
+
     public void returnBook() {
         this.available = true;
     }

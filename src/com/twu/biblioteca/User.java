@@ -3,10 +3,18 @@ package com.twu.biblioteca;
 public class User {
     private String id;
     private String password;
+    private Boolean superUser;
 
     public User(String id, String password) {
         this.id = id;
         this.password = password;
+        this.superUser = false;
+    }
+
+    public User(String id, String password, Boolean superUser) {
+        this.id = id;
+        this.password = password;
+        this.superUser = superUser;
     }
 
     public Boolean checkPassword(String password) {
@@ -17,7 +25,7 @@ public class User {
         return id;
     }
 
-    public String getPassword() {
-        return password;
+    public Boolean isSuperUser() {
+        return superUser;
     }
 }

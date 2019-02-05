@@ -6,10 +6,13 @@ import java.util.List;
 public class Users {
     public static final List<User> USERS = new ArrayList<>();
     public static final User NO_USER = new User("", "");
+    public static final User LIBRARIAN = new User("456-7891", "pass4", true);
+
     static {
-        USERS.add(new User("user1", "pass1"));
-        USERS.add(new User("user2", "pass2"));
-        USERS.add(new User("user3", "pass3"));
+        USERS.add(new User("123-4567", "pass1"));
+        USERS.add(new User("234-5678", "pass2"));
+        USERS.add(new User("345-6789", "pass3"));
+        USERS.add(LIBRARIAN);
     }
 
     public static Boolean userIdExists(String id) {

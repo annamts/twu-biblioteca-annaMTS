@@ -19,6 +19,16 @@ public class BookManager {
         return result + "\n";
     }
 
+    public static String listOfCheckedOutBooksAsString() {
+        String result = "These are the checked out books:\n";
+        for(Book book : bookList) {
+            if (!book.isAvailable()) {
+                result += "\n" + book.toFormattedStringWithUser();
+            }
+        }
+        return result;
+    }
+
     public static List<Book> getBookList() {
         return bookList;
     }

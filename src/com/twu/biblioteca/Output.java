@@ -54,6 +54,10 @@ public class Output {
         System.out.println(MovieManager.movieListAsString());
     }
 
+    public static void displayListOfCheckedOutBooks() {
+        System.out.println(BookManager.listOfCheckedOutBooksAsString());
+    }
+
     public static void checkOutBook(Boolean checkOutSuccess) {
         if (checkOutSuccess) {
             System.out.println(SUCCESSFUL_BOOK_CHECKOUT);

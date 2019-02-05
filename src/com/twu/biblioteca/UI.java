@@ -12,6 +12,8 @@ public class UI {
             respondToInput(input);
             if(user == Users.NO_USER) {
                 Output.displayMainMenu();
+            } else if (user.isSuperUser()) {
+                Output.displayListOfCheckedOutBooks();
             } else {
                 Output.displayUserMenu();
             }
