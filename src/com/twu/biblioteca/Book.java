@@ -4,6 +4,7 @@ public class Book extends Resource{
     private String title;
     private String author;
     private Integer yearOfPublishing;
+    private String user;
 
     public Book(String title, String author, Integer yearOfPublishing) {
         this.title = title;
@@ -29,5 +30,9 @@ public class Book extends Resource{
 
     public Integer getYearOfPublishing() {
         return yearOfPublishing;
+    }
+
+    public String getUser() {
+        return user;
     }
 }

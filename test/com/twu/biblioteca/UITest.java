@@ -46,13 +46,12 @@ public class UITest {
     public void mainMenuIsDisplayed() {
         Output.displayMainMenu();
         String expected = "Choose an option by inputting the letter on the left.\n" +
-                "Follow it by a space and the title of the book if you are checking out or returning a book.\n" +
+                "Follow it by a space and the title or name of the resource if you want to check it out.\n" +
                 "\n" +
                 "\tb\tList of books\n" +
                 "\tm\tList of movies\n" +
-                "\tcb\tCheck out a book\n" +
                 "\tcm\tCheck out a movie\n" +
-                "\tr\tReturn a book\n" +
+                "\tl\tLog in\n" +
                 "\tq\tQuit application\n";
         assertEquals(expected, outContent.toString());
     }
