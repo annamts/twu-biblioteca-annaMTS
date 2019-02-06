@@ -44,8 +44,9 @@ public class UI {
     }
 
     public static void respondToInput() {
-        if (options.containsKey(Input.getFirstLetter(input))) {
-            options.get(Input.getFirstLetter(input)).run();
+        String firstLetter = Input.getFirstLetter(input);
+        if (options.containsKey(firstLetter)) {
+            options.get(firstLetter).run();
         } else {
             Output.wrongInput();
         }

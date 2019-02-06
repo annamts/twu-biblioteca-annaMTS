@@ -10,7 +10,8 @@ public class MovieManager extends ResourceManager {
     }
 
     public void addMovieList(String fileName) {
-        super.setResourceList(MovieParser.createListOfMovies(fileName));
+        List<Resource> listOfMovies = MovieParser.createListOfMovies(fileName);
+        super.setResourceList(listOfMovies);
     }
 
     public Movie findMovie(String movieName) {

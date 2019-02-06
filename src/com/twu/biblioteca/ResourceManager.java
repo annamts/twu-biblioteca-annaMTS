@@ -22,7 +22,9 @@ public abstract class ResourceManager {
 
     public Resource findResource(String title) {
         for(Resource resource : resourceList) {
-            if (title.toLowerCase().equals(resource.getTitle().toLowerCase())) {
+            String titleLowerCase = title.toLowerCase();
+            String resourceTitleLowerCase = resource.getTitle().toLowerCase();
+            if (titleLowerCase.equals(resourceTitleLowerCase)) {
                 return resource;
             }
         }

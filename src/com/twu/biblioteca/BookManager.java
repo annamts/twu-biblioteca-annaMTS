@@ -1,5 +1,7 @@
 package com.twu.biblioteca;
 
+import java.util.List;
+
 public class BookManager extends ResourceManager {
 
     public BookManager(String fileName) {
@@ -8,7 +10,8 @@ public class BookManager extends ResourceManager {
     }
 
     public void addBookList(String fileName) {
-        super.setResourceList(BookParser.createListOfBooks(fileName));
+        List<Resource> listOfBooks = BookParser.createListOfBooks(fileName);
+        super.setResourceList(listOfBooks);
     }
 
     public String listOfCheckedOutBooksAsString() {
