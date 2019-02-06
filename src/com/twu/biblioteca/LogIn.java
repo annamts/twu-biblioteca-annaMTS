@@ -1,7 +1,7 @@
 package com.twu.biblioteca;
 
 public class LogIn {
-    static void logIn() {
+    static void run() {
         Output.askForUserId();
         String id = Input.get();
         logInUser(id);

@@ -38,6 +38,7 @@ public class Output {
     public static void wrongPassword() {
         System.out.println(WRONG_PASSWORD);
     }
+
     public static void displayUserMenu() {
         System.out.println(Menu.USER);
     }
@@ -47,11 +48,11 @@ public class Output {
     }
 
     public static void displayListOfBooks() {
-        System.out.println(BookManager.bookListAsString());
+        System.out.println(BookManager.resourceListAsString());
     }
 
     public static void displayListOfMovies() {
-        System.out.println(MovieManager.movieListAsString());
+        System.out.println(MovieManager.resourceListAsString());
     }
 
     public static void displayListOfCheckedOutBooks() {

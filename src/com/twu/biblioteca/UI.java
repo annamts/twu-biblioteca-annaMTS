@@ -1,15 +1,31 @@
 package com.twu.biblioteca;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class UI {
 
     private static User user = Users.NO_USER;
+    private static String input = "";
+    private static final Map<String, Runnable> options;
+
+    static {
+        options = new HashMap<>();
+        options.put(Input.BOOK_LIST, () -> Output.displayListOfBooks());
+        options.put(Input.LOG_IN, () -> MenuActions.logIn());
+        options.put(Input.MOVIE_LIST, () -> Output.displayListOfMovies());
+        options.put(Input.CHECK_OUT_BOOK, () -> MenuActions.checkOutBook());
+        options.put(Input.CHECK_OUT_MOVIE, () -> MenuActions.checkOutMovie());
+        options.put(Input.RETURN, () -> MenuActions.returnBook());
+        options.put(Input.USER_INFO, () -> MenuActions.showUserInfo());
+    }
 
     public static void startUI() {
         Output.firstGreeting();
         Output.displayMainMenu();
-        String input = Input.get();
+        input = Input.get();
         while(!input.equals(Input.QUIT)) {
-            respondToInput(input);
+            respondToInput();
             if(user == Users.NO_USER) {
                 Output.displayMainMenu();
             } else if (user.isSuperUser()) {
@@ -22,46 +38,11 @@ public class UI {
         Output.goodbyeMessage();
     }
 
-    public static void respondToInput(String input) {
-        switch(Input.getFirstLetter(input)) {
-            case Input.BOOK_LIST:
-                Output.displayListOfBooks();
-                break;
-            case Input.LOG_IN:
-                LogIn.logIn();
-                break;
-            case Input.MOVIE_LIST:
-                Output.displayListOfMovies();
-                break;
-            case Input.CHECK_OUT_BOOK:
-                if(user != Users.NO_USER) {
-                    Boolean checkOutBookSuccess = BookManager.checkOut(Input.extractBookTitle(input));
-                    Output.checkOutBook(checkOutBookSuccess);
-                } else {
-                    Output.notLoggedIn();
-                }
-                break;
-            case Input.CHECK_OUT_MOVIE:
-                Boolean checkOutMovieSuccess = MovieManager.checkOut(Input.extractBookTitle(input));
-                Output.checkOutMovie(checkOutMovieSuccess);
-                break;
-            case Input.RETURN:
-                if(user == Users.NO_USER) {
-                    Output.notLoggedIn();
-                } else {
-                    Boolean returnSuccess = BookManager.returnBook(Input.extractBookTitle(input));
-                    Output.returnBook(returnSuccess);
-                }
-                break;
-            case Input.USER_INFO:
-                if(user == Users.NO_USER) {
-                    Output.wrongInput();
-                } else {
-                    Output.displayUserInfo();
-                }
-                break;
-            default:
-                Output.wrongInput();
+    public static void respondToInput() {
+        if (options.containsKey(Input.getFirstLetter(input))) {
+            options.get(Input.getFirstLetter(input)).run();
+        } else {
+            Output.wrongInput();
         }
     }
 
@@ -71,5 +52,13 @@ public class UI {
 
     public static User getUser() {
         return user;
+    }
+
+    public static void setInput(String input) {
+        UI.input = input;
+    }
+
+    public static String getInput() {
+        return input;
     }
 }

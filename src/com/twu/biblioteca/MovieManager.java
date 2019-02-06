@@ -9,7 +9,7 @@ public class MovieManager {
         movieList = MovieParser.createListOfMovies(fileName);
     }
 
-    public static String movieListAsString() {
+    public static String resourceListAsString() {
         String result = "These are our available movies:\n";
         for (Movie movie : movieList) {
             if (movie.isAvailable()){

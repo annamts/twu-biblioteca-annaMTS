@@ -9,7 +9,7 @@ public class BookManager {
         bookList = BookParser.createListOfBooks(fileName);
     }
 
-    public static String bookListAsString() {
+    public static String resourceListAsString() {
         String result = "These are our available books:\n";
         for (Book book : bookList) {
             if (book.isAvailable()){

@@ -4,7 +4,6 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.awt.print.Book;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
@@ -51,14 +50,14 @@ public class UITest {
     @Test
     public void listOfBooksIsDisplayed() {
         Output.displayListOfBooks();
-        assertEquals(BookManager.bookListAsString() + "\n", outContent.toString());
+        assertEquals(BookManager.resourceListAsString() + "\n", outContent.toString());
     }
 
     @Test
     public void mainMenuIsDisplayed() {
         Output.displayMainMenu();
         String expected = "Choose an option by inputting the letter on the left.\n" +
-                "Follow it by a space and the title or name of the resource if you want to check it out.\n" +
+                "Follow it by a space and the title or name of the resource if you want to check it out or return it.\n" +
                 "\n" +
                 "\tb\tList of books\n" +
                 "\tm\tList of movies\n" +
@@ -70,46 +69,53 @@ public class UITest {
 
     @Test
     public void listOfBooksIsDisplayedWhenInputIsB() {
-        UI.respondToInput("b");
-        assertEquals(BookManager.bookListAsString() + "\n", outContent.toString());
+        UI.setInput("b");
+        UI.respondToInput();
+        assertEquals(BookManager.resourceListAsString() + "\n", outContent.toString());
     }
 
     @Test
     public void userGetsNotifiedWhenChoosingAnInvalidOption() {
-        UI.respondToInput("lalala");
+        UI.setInput("lalala");
+        UI.respondToInput();
         assertEquals("Please select a valid option!\n\n", outContent.toString());
     }
 
     @Test
     public void whenUserIsLoggedInAndChecksOutBookTheyGetSuccessMessage() {
         UI.setUser(user);
-        UI.respondToInput("cb Lolita");
+        UI.setInput("cb Lolita");
+        UI.respondToInput();
         assertEquals("Thank you! Enjoy the book\n\n", outContent.toString());
     }
 
     @Test
     public void whenUserIsNotLoggedInAndTriesToCheckOutBookTheyGetNotified() {
-        UI.respondToInput("cb Lolita");
+        UI.setInput("cb Lolita");
+        UI.respondToInput();
         assertEquals("Your need to log in!\n\n", outContent.toString());
     }
 
     @Test
     public void whenUserIsLoggedInAndTriesToCheckOutBookThatDoesntExistTheyGetNotified() {
+        UI.setInput("cb blblbl");
         UI.setUser(user);
-        UI.respondToInput("cb blblbl");
+        UI.respondToInput();
         assertEquals("Sorry, that book is not available\n\n", outContent.toString());
     }
 
     @Test
     public void whenUserIsNotLoggedInAndTriesToReturnABookTheyGetNotified() {
-        UI.respondToInput("r Lolita");
+        UI.setInput("r Lolita");
+        UI.respondToInput();
         assertEquals("Your need to log in!\n\n", outContent.toString());
     }
 
     @Test
     public void whenUserIsLoggedInAndTriesToReturnBookThatTheyDidNotCheckOutTheyAreNotified() {
         UI.setUser(user);
-        UI.respondToInput("r Lolita");
+        UI.setInput("r Lolita");
+        UI.respondToInput();
         assertEquals("That is not a valid book to return\n\n", outContent.toString());
     }
 
@@ -117,7 +123,8 @@ public class UITest {
     public void whenUserIsLoggedInAndReturnsBookThatTheyHaveTheyGetSuccessMessage() {
         UI.setUser(user);
         BookManager.checkOut("Lolita");
-        UI.respondToInput("r Lolita");
+        UI.setInput("r Lolita");
+        UI.respondToInput();
         assertEquals("Thank you for returning the book\n\n", outContent.toString());
     }
 
@@ -125,39 +132,45 @@ public class UITest {
     public void whenUserIsLoggedInAndReturnsBookThatIsCheckedOutButNotByThemTheyAreNotified() {
         BookManager.checkOut("Lolita");
         UI.setUser(user);
-        UI.respondToInput("r Lolita");
+        UI.setInput("r Lolita");
+        UI.respondToInput();
         assertEquals("That is not a valid book to return\n\n", outContent.toString());
     }
 
     @Test
     public void whenUserIsLoggedInAndReturnsBookThatIsNotCheckedOutTheyAreNotified() {
         UI.setUser(user);
-        UI.respondToInput("r Lolita");
+        UI.setInput("r Lolita");
+        UI.respondToInput();
         assertEquals("That is not a valid book to return\n\n", outContent.toString());
     }
 
     @Test
     public void whenUserIsLoggedInAndTriesToReturnBookThatDoesntExistTheyGetNotified() {
         UI.setUser(user);
-        UI.respondToInput("r jhdga");
+        UI.setInput("r jhdga");
+        UI.respondToInput();
         assertEquals("That is not a valid book to return\n\n", outContent.toString());
     }
 
     @Test
     public void listOfMoviesIsDisplayedWhenInputIsM() {
-        UI.respondToInput("m");
-        assertEquals(MovieManager.movieListAsString() + "\n", outContent.toString());
+        UI.setInput("m");
+        UI.respondToInput();
+        assertEquals(MovieManager.resourceListAsString() + "\n", outContent.toString());
     }
 
     @Test
     public void whenUserTriesToCheckOutAvailableMovieTheyGetSuccessMessage() {
-        UI.respondToInput("cm Pulp Fiction");
+        UI.setInput("cm Pulp Fiction");
+        UI.respondToInput();
         assertEquals("Thank you! Enjoy the movie\n\n", outContent.toString());
     }
 
     @Test
     public void whenUserTriesToCheckOutUnavailableMovieTheyAreNotified() {
-        UI.respondToInput("cm blabla");
+        UI.setInput("cm blabla");
+        UI.respondToInput();
         assertEquals("Sorry, that movie is not available\n\n", outContent.toString());
     }
 }
