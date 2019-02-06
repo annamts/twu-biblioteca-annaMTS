@@ -48,15 +48,15 @@ public class Output {
     }
 
     public static void displayListOfBooks() {
-        System.out.println(BookManager.resourceListAsString());
+        System.out.println(UI.getBookManager().resourceListAsString());
     }
 
     public static void displayListOfMovies() {
-        System.out.println(MovieManager.resourceListAsString());
+        System.out.println(UI.getMovieManager().resourceListAsString());
     }
 
     public static void displayListOfCheckedOutBooks() {
-        System.out.println(BookManager.listOfCheckedOutBooksAsString());
+        System.out.println(UI.getBookManager().listOfCheckedOutBooksAsString());
     }
 
     public static void checkOutBook(Boolean checkOutSuccess) {

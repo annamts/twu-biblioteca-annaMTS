@@ -1,6 +1,5 @@
 package com.twu.biblioteca;
 
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -8,62 +7,64 @@ import static org.junit.Assert.*;
 
 public class BookManagerTest {
 
+    BookManager bookManager;
+
     @Before
     public void setUp() {
-        BookManager.addBookList("test_resources/books.txt");
+        bookManager = new BookManager("test_resources/books.txt");
     }
 
     @Test
     public void bookListIsAdded() {
-        assertEquals(15, BookManager.getBookList().size());
+        assertEquals(15, bookManager.getResourceList().size());
     }
 
     @Test
     public void listOfBooksIsNotModifiedWhenBookIsNotFound() {
-        BookManager.checkOut("Blablabla");
-        assertEquals(15, BookManager.getBookList().size());
+        bookManager.checkOut("Blablabla");
+        assertEquals(15, bookManager.getResourceList().size());
     }
 
     @Test
     public void bookObjectIsFoundByTitle() {
-        assertEquals("Lolita", BookManager.findBook("Lolita").getTitle());
+        assertEquals("Lolita", bookManager.findBook("Lolita").getTitle());
     }
 
     @Test
     public void tryingToFindBookThatIsNotInTheListReturnsNull() {
-        assertEquals(null, BookManager.findBook("bla"));
+        assertEquals(null, bookManager.findBook("bla"));
     }
 
     @Test
     public void checkOutReturnsTrueWhenBookIsFound() {
-        assertTrue(BookManager.checkOut("Lolita"));
+        assertTrue(bookManager.checkOut("Lolita"));
     }
 
     @Test
     public void checkOutReturnsFalseWhenBookIsNotFound() {
-        assertFalse(BookManager.checkOut("Blablabla"));
+        assertFalse(bookManager.checkOut("Blablabla"));
     }
 
     @Test
     public void bookIsCheckedOutWhenItIsFound() {
-        BookManager.checkOut("Lolita");
-        assertFalse(BookManager.findBook("Lolita").isAvailable());
+        bookManager.checkOut("Lolita");
+        assertFalse(bookManager.findBook("Lolita").isAvailable());
     }
 
     @Test
     public void returnBookReturnsTrueWhenBookIsSuccessfullyReturned() {
-        BookManager.checkOut("Lolita");
-        assertTrue(BookManager.returnBook("Lolita"));
+        bookManager.checkOut("Lolita");
+        assertTrue(bookManager.returnBook("Lolita"));
     }
 
     @Test
     public void returnBookReturnsFalseWhenBookIsAlreadyThere() {
-        assertFalse(BookManager.returnBook("Lolita"));
+        assertFalse(bookManager.returnBook("Lolita"));
     }
 
     @Test
     public void returnBookReturnsFalseWhenBookIsNotInBooklist() {
-        assertFalse(BookManager.returnBook("bla"));
+        assertFalse(bookManager.returnBook("bla"));
     }
 
 }

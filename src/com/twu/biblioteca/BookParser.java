@@ -8,8 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BookParser {
-    public static List<Book> createListOfBooks(String bookFile) {
-        List <Book> listOfBooks = new ArrayList<Book>();
+    public static List<Resource> createListOfBooks(String bookFile) {
+        List <Resource> listOfBooks = new ArrayList<>();
         String line;
 
         try {

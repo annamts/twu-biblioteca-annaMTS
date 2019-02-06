@@ -12,6 +12,9 @@ import static org.junit.Assert.*;
 public class UITest {
 
     private User user;
+    private BookManager bookManager;
+    private MovieManager movieManager;
+
     private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
     private final PrintStream originalOut = System.out;
 
@@ -22,8 +25,8 @@ public class UITest {
 
     @Before
     public void setUpManagers() {
-        BookManager.addBookList("test_resources/books.txt");
-        MovieManager.addMovieList("test_resources/movies.txt");
+        bookManager = new BookManager("test_resources/books.txt");
+        movieManager = new MovieManager("test_resources/movies.txt");
     }
 
     @Before
@@ -50,14 +53,14 @@ public class UITest {
     @Test
     public void listOfBooksIsDisplayed() {
         Output.displayListOfBooks();
-        assertEquals(BookManager.resourceListAsString() + "\n", outContent.toString());
+        assertEquals(bookManager.resourceListAsString() + "\n", outContent.toString());
     }
 
     @Test
     public void mainMenuIsDisplayed() {
         Output.displayMainMenu();
         String expected = "Choose an option by inputting the letter on the left.\n" +
-                "Follow it by a space and the title or name of the resource if you want to check it out or return it.\n" +
+                "Follow it by a space and the title or title of the resource if you want to check it out or return it.\n" +
                 "\n" +
                 "\tb\tList of books\n" +
                 "\tm\tList of movies\n" +
@@ -71,7 +74,7 @@ public class UITest {
     public void listOfBooksIsDisplayedWhenInputIsB() {
         UI.setInput("b");
         UI.respondToInput();
-        assertEquals(BookManager.resourceListAsString() + "\n", outContent.toString());
+        assertEquals(bookManager.resourceListAsString() + "\n", outContent.toString());
     }
 
     @Test
@@ -122,15 +125,17 @@ public class UITest {
     @Test
     public void whenUserIsLoggedInAndReturnsBookThatTheyHaveTheyGetSuccessMessage() {
         UI.setUser(user);
-        BookManager.checkOut("Lolita");
+        UI.setInput("cb Lolita");
+        UI.respondToInput();
         UI.setInput("r Lolita");
         UI.respondToInput();
-        assertEquals("Thank you for returning the book\n\n", outContent.toString());
+        assertEquals("Thank you! Enjoy the book\n\n" +
+                "Thank you for returning the book\n\n", outContent.toString());
     }
 
     @Test
     public void whenUserIsLoggedInAndReturnsBookThatIsCheckedOutButNotByThemTheyAreNotified() {
-        BookManager.checkOut("Lolita");
+        bookManager.checkOut("Lolita");
         UI.setUser(user);
         UI.setInput("r Lolita");
         UI.respondToInput();
@@ -157,7 +162,7 @@ public class UITest {
     public void listOfMoviesIsDisplayedWhenInputIsM() {
         UI.setInput("m");
         UI.respondToInput();
-        assertEquals(MovieManager.resourceListAsString() + "\n", outContent.toString());
+        assertEquals(movieManager.resourceListAsString() + "\n", outContent.toString());
     }
 
     @Test

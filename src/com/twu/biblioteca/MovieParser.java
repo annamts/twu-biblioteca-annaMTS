@@ -9,8 +9,8 @@ import java.util.List;
 
 public class MovieParser {
 
-    public static List<Movie> createListOfMovies(String movieFile) {
-        List<Movie> listOfMovies = new ArrayList<>();
+    public static List<Resource> createListOfMovies(String movieFile) {
+        List<Resource> listOfMovies = new ArrayList<>();
         String line;
 
         try {

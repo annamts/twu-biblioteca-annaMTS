@@ -11,7 +11,7 @@ public class MenuActions {
 
     static void checkOutBook() {
         if(UI.getUser() != Users.NO_USER) {
-            Boolean checkOutBookSuccess = BookManager.checkOut(Input.extractBookTitle(UI.getInput())); //this won't work, you need to get the input in here...
+            Boolean checkOutBookSuccess = UI.getBookManager().checkOut(Input.extractBookTitle(UI.getInput())); //this won't work, you need to get the input in here...
             Output.checkOutBook(checkOutBookSuccess);
         } else {
             Output.notLoggedIn();
@@ -19,7 +19,7 @@ public class MenuActions {
     }
 
     static void checkOutMovie() {
-        Boolean checkOutMovieSuccess = MovieManager.checkOut(Input.extractBookTitle(UI.getInput())); //this won't work, it needs input
+        Boolean checkOutMovieSuccess = UI.getMovieManager().checkOut(Input.extractBookTitle(UI.getInput())); //this won't work, it needs input
         Output.checkOutMovie(checkOutMovieSuccess);
     }
 
@@ -27,7 +27,7 @@ public class MenuActions {
         if(UI.getUser() == Users.NO_USER) {
             Output.notLoggedIn();
         } else {
-            Boolean returnSuccess = BookManager.returnBook(Input.extractBookTitle(UI.getInput()));
+            Boolean returnSuccess = UI.getBookManager().returnBook(Input.extractBookTitle(UI.getInput()));
             Output.returnBook(returnSuccess);
         }
     }

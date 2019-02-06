@@ -7,9 +7,14 @@ public class UI {
 
     private static User user = Users.NO_USER;
     private static String input = "";
+    private static BookManager bookManager;
+    private static MovieManager movieManager;
     private static final Map<String, Runnable> options;
 
     static {
+        bookManager = new BookManager("resources/books.txt");
+        movieManager = new MovieManager("resources/movies.txt");
+
         options = new HashMap<>();
         options.put(Input.BOOK_LIST, () -> Output.displayListOfBooks());
         options.put(Input.LOG_IN, () -> MenuActions.logIn());
@@ -60,5 +65,13 @@ public class UI {
 
     public static String getInput() {
         return input;
+    }
+
+    public static BookManager getBookManager() {
+        return bookManager;
+    }
+
+    public static MovieManager getMovieManager() {
+        return movieManager;
     }
 }

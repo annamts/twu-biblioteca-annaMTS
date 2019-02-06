@@ -6,40 +6,43 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class MovieManagerTest {
+
+    MovieManager movieManager;
+
     @Before
     public void setUp() {
-        MovieManager.addMovieList("test_resources/movies.txt");
+        movieManager = new MovieManager("test_resources/movies.txt");
     }
 
     @Test
     public void whenLookingForTitleThatExistsFindMovieReturnsMovie() {
-        assertEquals("Pulp Fiction", MovieManager.findMovie("Pulp Fiction").getName());
+        assertEquals("Pulp Fiction", movieManager.findMovie("Pulp Fiction").getTitle());
     }
 
     @Test
     public void whenLookingForTitleThatDoesNotExistFindMovieReturnsNull() {
-        assertEquals(null, MovieManager.findMovie("blabla"));
+        assertEquals(null, movieManager.findMovie("blabla"));
     }
 
     @Test
     public void movieIsCheckedOut() {
-        MovieManager.checkOut("Pulp Fiction");
-        assertEquals(false, MovieManager.findMovie("Pulp Fiction").isAvailable());
+        movieManager.checkOut("Pulp Fiction");
+        assertEquals(false, movieManager.findMovie("Pulp Fiction").isAvailable());
     }
 
     @Test
     public void whenMovieIsAvailableMethodCheckOutReturnsTrue() {
-        assertEquals(true, MovieManager.checkOut("Pulp Fiction"));
+        assertEquals(true, movieManager.checkOut("Pulp Fiction"));
     }
 
     @Test
     public void whenMovieIsAlreadyCheckedOutMethodCheckOutReturnsFalse() {
-        MovieManager.checkOut("Pulp Fiction");
-        assertEquals(false, MovieManager.checkOut("Pulp Fiction"));
+        movieManager.checkOut("Pulp Fiction");
+        assertEquals(false, movieManager.checkOut("Pulp Fiction"));
     }
 
     @Test
     public void whenMovieDoesNotExistCheckOutReturnsFalse() {
-        assertEquals(false, MovieManager.checkOut("blabla"));
+        assertEquals(false, movieManager.checkOut("blabla"));
     }
 }
